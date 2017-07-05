@@ -4,16 +4,16 @@
 
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+const apirequest = require('../../lib/apirequest');
+const createAPIRequest = apirequest.createAPIRequest;
 
 function CloudPrint(options) {
 
-    var self = this;
+    const self = this;
     this._options = options || {};
     this.printers = {
-        search: function (params, callback) {
-            var parameters = {
+        search: function(params, callback) {
+            const parameters = {
                 options: {
                     url: 'https://www.google.com/cloudprint/search',
                     method: 'POST'
@@ -23,8 +23,8 @@ function CloudPrint(options) {
             };
             return createAPIRequest(parameters, callback);
         },
-        get: function (params, callback) {
-            var parameters = {
+        get: function(params, callback) {
+            const parameters = {
                 options: {
                     url: 'https://www.google.com/cloudprint/printer',
                     method: 'POST'
@@ -34,18 +34,29 @@ function CloudPrint(options) {
                 context: self
             };
             return createAPIRequest(parameters, callback);
+        },
+        search: function(params, callback) {
+            const parameters = {
+                options: {
+                    url: 'https://www.google.com/cloudprint/search',
+                    method: 'POST'
+                },
+                params: params,
+                requiredParams: ['printerid'],
+                context: self
+            };
+            return createAPIRequest(paramters, callback);
         }
     };
-    this.jobs =
-    {
-        sumbmit: function (params, callback) {
-            var parameters = {
+    this.jobs = {
+        sumbmit: function(params, callback) {
+            const parameters = {
                 options: {
                     url: 'https://www.google.com/cloudprint/submit',
                     method: 'POST'
                 },
                 params: params,
-                requiredParams: ['printerid','title','ticket','content'],
+                requiredParams: ['printerid', 'title', 'ticket', 'content'],
                 context: self
             };
             return createAPIRequest(parameters, callback);
